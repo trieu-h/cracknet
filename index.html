@@ -140,10 +140,19 @@
         transform: scale(1.05);
       }
 
+      .person-card:hover .avatar img {
+        border-color: var(--accent-linkedin);
+        box-shadow: 0 0 20px var(--accent-linkedin-glow);
+      }
+
       .avatar svg {
         width: 60%;
         height: 60%;
         opacity: 0.8;
+      }
+
+      .avatar img {
+        transition: all 0.3s ease;
       }
 
       /* Name & Role */
@@ -237,17 +246,73 @@
 
       /* Responsive */
       @media (max-width: 768px) {
+        body {
+          padding: 30px 16px;
+        }
+
+        .header {
+          margin-bottom: 30px;
+        }
+
         .title {
-          font-size: 36px;
+          font-size: 28px;
         }
-        
+
         .subtitle {
-          font-size: 18px;
+          font-size: 16px;
         }
-        
+
         .team-grid {
           flex-direction: column;
-          align-items: center;
+          align-items: stretch;
+          gap: 20px;
+        }
+
+        .person-card {
+          flex: 1 1 auto;
+          max-width: none;
+          width: 100%;
+          padding: 24px 20px;
+        }
+
+        .avatar {
+          width: 80px;
+          height: 80px;
+        }
+
+        .avatar svg {
+          width: 50%;
+          height: 50%;
+        }
+
+        .name {
+          font-size: 18px;
+        }
+
+        .role {
+          font-size: 12px;
+        }
+
+        .linkedin-btn {
+          padding: 8px 20px;
+          font-size: 13px;
+        }
+
+        .linkedin-btn svg {
+          width: 14px;
+          height: 14px;
+        }
+      }
+
+      /* Tablet adjustments */
+      @media (min-width: 769px) and (max-width: 1024px) {
+        .team-grid {
+          gap: 20px;
+        }
+
+        .person-card {
+          flex: 0 0 calc(50% - 20px);
+          max-width: calc(50% - 20px);
         }
       }
     </style>
@@ -260,10 +325,8 @@
 
     <div class="team-grid">
       <div class="person-card">
-        <div class="avatar" style="background: linear-gradient(135deg, #2d3a2d 0%, #1a251a 100%);">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-          </svg>
+        <div class="avatar" style="background: none; border: none;">
+          <img src="photos/trieu.jpeg" alt="Huynh Hai Trieu Le" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid var(--border-color);">
         </div>
         <h2 class="name">Huynh Hai Trieu Le</h2>
         <p class="role">Team Member</p>
@@ -276,14 +339,12 @@
       </div>
 
       <div class="person-card">
-        <div class="avatar" style="background: linear-gradient(135deg, #3d3a2d 0%, #252215 100%);">
-          <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-          </svg>
+        <div class="avatar" style="background: none; border: none;">
+          <img src="photos/osele.jpeg" alt="Osele Adeoye" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid var(--border-color);">
         </div>
         <h2 class="name">Osele Adeoye</h2>
         <p class="role">Team Member</p>
-        <a href="https://www.linkedin.com/in/osele-adeoye/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+        <a href="https://www.linkedin.com/in/osele-adeoye-968a62272/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
           <svg viewBox="0 0 24 24" fill="currentColor">
             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
           </svg>
