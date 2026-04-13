@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrackNet Team</title>
+    <link rel="stylesheet" href="reset.css">
+    <style>
+      @font-face {
+        font-family: Alegreya;
+        src: url(Alegreya-Regular.ttf);
+      }
+
+      :root {
+        --bg-dark: #181818;
+        --bg-card: #1e1e1e;
+        --accent-linkedin: #0a66c2;
+        --accent-linkedin-glow: rgba(10, 102, 194, 0.3);
+        --text-primary: #ffffff;
+        --text-secondary: #a0a0a0;
+        --border-color: #2a2a2a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        min-height: 100dvh;
+        max-width: 1200px;
+        margin: auto;
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        font-family: Alegreya, Georgia, serif;
+        font-size: 18px;
+        line-height: 1.6;
+        padding: 60px 20px;
+        background-image: 
+          radial-gradient(circle at 20% 50%, rgba(10, 102, 194, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 80% 80%, rgba(10, 102, 194, 0.05) 0%, transparent 40%);
+      }
+
+      /* Header Styles */
+      .header {
+        text-align: center;
+        margin-bottom: 60px;
+        animation: fadeInDown 0.8s ease-out;
+      }
+
+      .title {
+        font-size: 48px;
+        color: var(--accent-linkedin);
+        margin-bottom: 12px;
+        letter-spacing: -1px;
+        font-weight: 600;
+      }
+
+      .subtitle {
+        font-size: 22px;
+        color: var(--text-secondary);
+        font-weight: normal;
+      }
+
+      /* Grid Layout */
+      .team-grid {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      /* Person Card */
+      .person-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 30px;
+        text-align: center;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        animation: fadeInUp 0.6s ease-out backwards;
+        flex: 0 0 260px;
+        max-width: 260px;
+      }
+
+      .person-card:nth-child(1) { animation-delay: 0.1s; }
+      .person-card:nth-child(2) { animation-delay: 0.2s; }
+      .person-card:nth-child(3) { animation-delay: 0.3s; }
+      .person-card:nth-child(4) { animation-delay: 0.4s; }
+
+      .person-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent-linkedin);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3),
+                    0 0 30px var(--accent-linkedin-glow);
+      }
+
+      .person-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, var(--accent-linkedin), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .person-card:hover::before {
+        opacity: 1;
+      }
+
+      /* Avatar Styles */
+      .avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        position: relative;
+        overflow: hidden;
+        border: 3px solid var(--border-color);
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        font-weight: bold;
+        color: var(--accent-linkedin);
+        background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%);
+      }
+
+      .person-card:hover .avatar {
+        border-color: var(--accent-linkedin);
+        box-shadow: 0 0 20px var(--accent-linkedin-glow);
+        transform: scale(1.05);
+      }
+
+      .avatar svg {
+        width: 60%;
+        height: 60%;
+        opacity: 0.8;
+      }
+
+      /* Name & Role */
+      .name {
+        font-size: 22px;
+        color: var(--text-primary);
+        margin-bottom: 8px;
+        font-weight: 600;
+      }
+
+      .role {
+        font-size: 14px;
+        color: var(--accent-linkedin);
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+        opacity: 0.9;
+      }
+
+      /* LinkedIn Button */
+      .linkedin-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: 30px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .linkedin-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--accent-linkedin);
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+        z-index: -1;
+      }
+
+      .linkedin-btn:hover {
+        color: var(--bg-dark);
+        border-color: var(--accent-linkedin);
+      }
+
+      .linkedin-btn:hover::before {
+        transform: translateX(0);
+      }
+
+      .linkedin-btn svg {
+        width: 16px;
+        height: 16px;
+        transition: transform 0.3s ease;
+      }
+
+      .linkedin-btn:hover svg {
+        transform: translateX(3px);
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .title {
+          font-size: 36px;
+        }
+        
+        .subtitle {
+          font-size: 18px;
+        }
+        
+        .team-grid {
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="title">CrackNet Team</h1>
+      <p class="subtitle">Get to know us</p>
+    </header>
+
+    <div class="team-grid">
+      <div class="person-card">
+        <div class="avatar" style="background: linear-gradient(135deg, #2d3a2d 0%, #1a251a 100%);">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h2 class="name">Huynh Hai Trieu Le</h2>
+        <p class="role">Team Member</p>
+        <a href="https://www.linkedin.com/in/lehhtrieu/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="person-card">
+        <div class="avatar" style="background: linear-gradient(135deg, #3d3a2d 0%, #252215 100%);">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h2 class="name">Osele Adeoye</h2>
+        <p class="role">Team Member</p>
+        <a href="https://www.linkedin.com/in/osele-adeoye/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="person-card">
+        <div class="avatar" style="background: linear-gradient(135deg, #2d3a3a 0%, #1a2525 100%);">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h2 class="name">Rithiek Sakthivel</h2>
+        <p class="role">Team Member</p>
+        <a href="https://www.linkedin.com/in/rithiek-sakthivel/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+
+      <div class="person-card">
+        <div class="avatar" style="background: linear-gradient(135deg, #3a2d3a 0%, #251a25 100%);">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h2 class="name">Darshan Modi</h2>
+        <p class="role">Team Member</p>
+        <a href="https://www.linkedin.com/in/darshan-modi/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
